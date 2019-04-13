@@ -21,6 +21,16 @@ bot.on('message', msg => {
     {
         return msg.channel.send('Pong !');
     }
+    if(cmd === `${prefix}aide`)
+    {
+        let embed = new Discord.RichEmbed()
+        .setColor('#00FB00')
+        .setTitle('Aide')
+        .addField('!aide', 'avoir la liste des commandes')
+        .addField('!ping', 'répondre Pong !')
+        .addField('!asimo', 'avoir des informations sur asimo')
+        return msg.channel.send(embed);
+    }
     if(cmd === `${prefix}asimo`)
     {
         let icon = bot.user.displayAvatarURL;
