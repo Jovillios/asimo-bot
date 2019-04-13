@@ -27,8 +27,9 @@ bot.on('message', msg => {
         .setColor('#00FB00')
         .setTitle('Aide')
         .addField('!aide', 'avoir la liste des commandes')
-        .addField('!ping', 'répondre Pong !')
         .addField('!asimo', 'avoir des informations sur asimo')
+        .addField('!ping', 'répondre pong')
+        .addField('!lancer', 'lancer une pièce qui tombe sur pile ou sur face')
         return msg.channel.send(embed);
     }
     if(cmd === `${prefix}asimo`)
@@ -43,7 +44,7 @@ bot.on('message', msg => {
         .setThumbnail(icon);
         return msg.channel.send(embed);
     }
-    if(cmd == `${prefix}flip`){
+    if(cmd == `${prefix}lancer`){
         let piece = Math.round(Math.random());
         if (piece == 1) {
             return msg.channel.send('Pile !')
