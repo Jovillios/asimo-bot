@@ -10,6 +10,24 @@ bot.on('guildMemberAdd', member => {
 
 })
 
+bot.on('emojiCreate', emoji => {
+    let authorUser = emoji.fetchAuthor();
+    let emojiName = emoji.name;
+    let authorName = authorUser.username;
+    let date = emoji.createdAt;
+    let channelEmoji = emoji.guild.channels.find('name', 'émoji');
+    let embed = new Discord.RichEmbed()
+    .setColor('#F417F1')
+    .setTitle('Nouvel émoji créé')
+    .setField('Nom', emojiName)
+    .setField('Auteur', authorName)
+    .setField('Date', date)
+    
+    channelEmoji.send(embed);
+    
+    return;    
+})
+
 bot.on('message', msg => {
     if(msg.author.bot) return;
     if(msg.channel.type === 'dm') return;
