@@ -29,13 +29,16 @@ bot.on('emojiCreate', emoji => {
 })
 
 bot.on('message', msg => {
+    // Ignorer les messages qui ne viennent pas de la guilde
+    if(!msg.guild) return;
+    // Si le message provient du bot, l'ignorer
     if(msg.author.bot) return;
     if(msg.channel.type === 'dm') return;
     let prefix = '!';
     let messageArray = msg.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.splice(1);
-    if(cmd === `${prefix}ping`)
+    if(msg.content.startsWith('!ping'))
     {
         return msg.channel.send('Pong !');
     }
