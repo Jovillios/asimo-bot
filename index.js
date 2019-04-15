@@ -39,8 +39,6 @@ bot.on('message', msg => {
     let cmd = messageArray[0];
     let args = messageArray.splice(1);
     
-    let numberMsg = 0;
-    
     if(msg.content.startsWith('!ping'))
     {
         return msg.channel.send('Pong !');
@@ -78,27 +76,19 @@ bot.on('message', msg => {
         }
     }
     
-    let joueur1;
-    let joueur2;
-    
     if(cmd == `${prefix}shifumi`) {
-        let message = '';
         msg.delete();
-        numberMsg += 1;
         if(args == 'ciseaux') {
-            message += '✂️ ';
+            return msg.channel.send('✂️');
         }
         else if(args == 'feuille') {
-            message +='📄 ';
+            return msg.channel.send('📄');
         }
         else if(args == 'pierre') {
-            message += '💎 ';
+            return msg.channel.send('💎');
         }
         else {
             retun msg.channel.send("Impossible, c'est seulement pierre feuille ou ciseaux");
-        }
-        if(numberMsg == 2) {
-            return msg.channel.send(message);
         }
  
     }
