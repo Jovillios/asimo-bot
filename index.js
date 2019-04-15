@@ -88,7 +88,7 @@ bot.on('message', msg => {
             return msg.channel.send('💎');
         }
         else {
-            retun msg.channel.send("Impossible, c'est seulement pierre feuille ou ciseaux");
+            return msg.channel.send("Impossible, c'est seulement pierre feuille ou ciseaux");
         }
  
     }
