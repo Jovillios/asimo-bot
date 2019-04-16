@@ -10,7 +10,7 @@ module.exports.run = async(bot, message, args) => {
         .addField('!ping', 'répondre pong')
         .addField('!lancer', 'lancer une pièce qui tombe sur pile ou sur face')
         .addField('!shifumi', 'le jeu du pierre feuille ciseaux')
-        return msg.channel.send(embed);
+        return message.channel.send(embed);
 }
 
 module.exports.help = {

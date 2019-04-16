@@ -1,18 +1,18 @@
 const Discord = require("discord.js");
 
 module.exports.run = async(bot, message, args) => {
-        msg.delete();
+        message.delete();
         if(args == 'ciseaux') {
-            return msg.channel.send('✂️');
+            return message.channel.send('✂️');
         }
         else if(args == 'feuille') {
-            return msg.channel.send('📄');
+            return message.channel.send('📄');
         }
         else if(args == 'pierre') {
-            return msg.channel.send('💎');
+            return message.channel.send('💎');
         }
         else {
-            return msg.channel.send("Impossible, c'est seulement pierre feuille ou ciseaux");
+            return message.channel.send("Impossible, c'est seulement pierre feuille ou ciseaux");
         }
 }
 

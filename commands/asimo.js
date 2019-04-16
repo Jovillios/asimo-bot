@@ -9,7 +9,7 @@ module.exports.run = async(bot, message, args) => {
         .addField('Spécialisation','Accueil des membres')
         .addField('Codeur', 'Jovillios')
         .setThumbnail(icon);
-        return msg.channel.send(embed);
+        return message.channel.send(embed);
 }
 
 module.exports.help = {
