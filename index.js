@@ -1,6 +1,26 @@
 const Discord = require('discord.js');
-const bot = new Discord.Client();
+const bot = new Discord.Client({disableEveryone: true});
+const fs = require("fs");
+bot.commands = new Discord.Collection();
 
+// -------- LIRE COMMANDES -----------
+
+fs.readdir("./commands/", (err, files) => {
+    if(err) console.log(err);
+    let jsfile = files.filter(f => f.split(".").pop() === "js");
+    if(jsfile.lengh <= 0) {
+        console.log("Commande non trouvée");
+        return;
+    }
+    jsfile.forEach((f, i) => {
+    let props = require(`./commands/${f}`);
+    console.log(`${f} chargé`);
+    bot.commands.set(props.help.name, props);
+    });
+})
+
+// -------- LIRE COMMANDES -----------
+                                
 bot.on('ready', () => {
     console.log(`${bot.user.tag} est connecté!`);
 });
@@ -38,61 +58,11 @@ bot.on('message', msg => {
     let messageArray = msg.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.splice(1);
-    
-    if(msg.content.startsWith('!ping'))
-    {
-        return msg.channel.send('Pong !');
-    }
-    if(cmd === `${prefix}aide`)
-    {
-        let embed = new Discord.RichEmbed()
-        .setColor('#00FB00')
-        .setTitle('Aide')
-        .addField('!aide', 'avoir la liste des commandes')
-        .addField('!asimo', 'avoir des informations sur asimo')
-        .addField('!ping', 'répondre pong')
-        .addField('!lancer', 'lancer une pièce qui tombe sur pile ou sur face')
-        return msg.channel.send(embed);
-    }
-    if(cmd === `${prefix}asimo`)
-    {
-        let icon = bot.user.displayAvatarURL;
-        let embed = new Discord.RichEmbed()
-        .setColor('#FEAD00')
-        .setTitle('Info Asimo')
-        .addField('Nom du robot', bot.user.username)
-        .addField('Spécialisation','Accueil des membres')
-        .addField('Codeur', 'Jovillios')
-        .setThumbnail(icon);
-        return msg.channel.send(embed);
-    }
-    if(cmd == `${prefix}lancer`){
-        let piece = Math.round(Math.random());
-        if (piece == 1) {
-            return msg.channel.send('Pile !');
-        }
-        else {
-            return msg.channel.send('Face !');
-        }
-    }
-    
-    if(cmd == `${prefix}shifumi`) {
-        msg.delete();
-        if(args == 'ciseaux') {
-            return msg.channel.send('✂️');
-        }
-        else if(args == 'feuille') {
-            return msg.channel.send('📄');
-        }
-        else if(args == 'pierre') {
-            return msg.channel.send('💎');
-        }
-        else {
-            return msg.channel.send("Impossible, c'est seulement pierre feuille ou ciseaux");
-        }
- 
-    }
 
+    // ----------- COMMANDES -------------
+
+    let commandfile = bot.commands.get(cmd.slice(prefix.length));
+    if (commandfile) commandfile.run(bot, message, args);
     
 })
 
