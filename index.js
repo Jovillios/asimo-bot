@@ -48,14 +48,12 @@ bot.on('emojiCreate', emoji => {
     return;    
 })
 
-bot.on('message', msg => {
-    // Ignorer les messages qui ne viennent pas de la guilde
-    if(!msg.guild) return;
+bot.on('message', message => {
     // Si le message provient du bot, l'ignorer
-    if(msg.author.bot) return;
-    if(msg.channel.type === 'dm') return;
+    if(message.author.bot) return;
+    if(message.channel.type === 'dm') return;
     let prefix = '!';
-    let messageArray = msg.content.split(" ");
+    let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.splice(1);
 
