@@ -26,8 +26,7 @@ bot.on('ready', () => {
 });
 
 bot.on('guildMemberAdd', member => {
-    member.guild.channels.find('name', 'bienvenue').send(`Hello ${member.user.username}, bienvenue dans la guild codex !`);
-
+    member.guild.channels.find('name', '🎉accueil').send(`Salutations citoyen ${member}. Mon nom est Asimo, droide de protocole.`);
 })
 
 bot.on('emojiCreate', emoji => {
