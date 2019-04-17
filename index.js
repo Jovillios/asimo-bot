@@ -34,7 +34,7 @@ bot.on('emojiCreate', emoji => {
     let date = emoji.createdAt;
     let identifiant = emoji.identifier;
 
-    let channelEmoji = emoji.guild.channels.find('name', 'émoji');
+    let channelEmoji = emoji.guild.channels.find('name', '😀émoji');
     let embed = new Discord.RichEmbed()
     .setColor('#F417F1')
     .setTitle('Nouvel émoji créé !')
