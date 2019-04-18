@@ -27,16 +27,16 @@ bot.on('ready', () => {
 
 bot.on('guildMemberAdd', member => {
     member.guild.channels.find('name', '🎉accueil').send(`Salutations citoyen ${member}. Mon nom est Asimo, droide de protocole.`);
-    let number = member.guild.memberCount;
-    let prevNb = number - 1;
+    let number = int(member.guild.memberCount);
+    let prevNb = int(number - 1);
     member.guild.channels.find('name', `${prevNb}-membres`).edit({'name': `${prevNb}-membres`});
     
 })
 
 bot.on('guildMemberRemove', member => {
     member.guild.channels.find('name', '🎉accueil').send(`Malheuresement le citoyen ${member} nous a quitté.`);
-    let number = member.guild.memberCount;
-    let prevNb = number + 1;
+    let number = int(member.guild.memberCount);
+    let prevNb = int(number + 1);
     member.guild.channels.find('name', `${prevNb}-membres`).edit({'name': `${prevNb}-membres`});
 })
 
